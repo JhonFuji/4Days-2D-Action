@@ -17,8 +17,9 @@ public class ScoreScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("read " + Application.persistentDataPath);
         Text ScTxt = Scores.GetComponent<Text>();
-        File.ReadAllLines("ScoreDeta.txt").ToList()
+        File.ReadAllLines(Application.persistentDataPath+"\\ScoreDeta.txt").ToList()
             .Select((item) => int.Parse(item))
             .Distinct().OrderByDescending((a) => a).ToList()
             .Take(10).ToList()
@@ -36,7 +37,7 @@ public class ScoreScript : MonoBehaviour
         }
         Numbers.GetComponent<Text>().text = n;
         KmScale.GetComponent<Text>().text = k;
-        NewDeta.GetComponent<Text>().text = File.ReadAllText("Newdeta.txt");
+        NewDeta.GetComponent<Text>().text = File.ReadAllText(Application.persistentDataPath+"\\Newdeta.txt");
 
 
         //File.WriteAllLines("Assets/Scripts/ScoreDeta.txt", allTextSt);

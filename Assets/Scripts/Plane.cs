@@ -37,8 +37,10 @@ public class Plane : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        File.WriteAllText("Newdeta.txt",  kmObj.GetComponent<Text>().text);
-        File.AppendAllText("ScoreDeta.txt", "\n"+kmObj.GetComponent<Text>().text);
+        Debug.Log("save "+Application.persistentDataPath);
+        File.WriteAllText(Path.Combine(Application.persistentDataPath, "Newdeta.txt"),  kmObj.GetComponent<Text>().text);
+//        new StreamWriter(Application.persistentDataPath + "ScoreDeta.txt",true).WriteLine(kmObj.GetComponent<Text>().text);
+        File.AppendAllText(Path.Combine(Application.persistentDataPath, "ScoreDeta.txt"), kmObj.GetComponent<Text>().text+"\n");
         //win(実行ファイル名_data)フォルダ
         //debug(プロジェクトフォルダ)/Assets
         SceneManager.LoadScene("ScoreScene");
