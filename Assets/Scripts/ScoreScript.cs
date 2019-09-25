@@ -19,7 +19,7 @@ public class ScoreScript : MonoBehaviour
     {
         Debug.Log("read " + Application.persistentDataPath);
         Text ScTxt = Scores.GetComponent<Text>();
-        File.ReadAllLines(Application.persistentDataPath+"\\ScoreDeta.txt").ToList()
+        File.ReadAllLines(Path.Combine(Application.persistentDataPath, "ScoreDeta.txt")).ToList()
             .Select((item) => int.Parse(item))
             .Distinct().OrderByDescending((a) => a).ToList()
             .Take(10).ToList()
@@ -37,7 +37,7 @@ public class ScoreScript : MonoBehaviour
         }
         Numbers.GetComponent<Text>().text = n;
         KmScale.GetComponent<Text>().text = k;
-        NewDeta.GetComponent<Text>().text = File.ReadAllText(Application.persistentDataPath+"\\Newdeta.txt");
+        NewDeta.GetComponent<Text>().text = File.ReadAllText(Path.Combine(Application.persistentDataPath, "Newdeta.txt"));
 
 
         //File.WriteAllLines("Assets/Scripts/ScoreDeta.txt", allTextSt);
